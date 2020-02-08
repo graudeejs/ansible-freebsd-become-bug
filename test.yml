@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: 'create user for testing'
+      become: yes
+      user:
+        name: 'tester'
+        state: present
+        shell: /bin/sh
+
+    - name: 'fail to execute as tester'
+      become: yes
+      become_user: 'tester'
+      shell: 'whoami'
+
